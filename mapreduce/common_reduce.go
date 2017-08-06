@@ -69,7 +69,6 @@ func doReduce(
 			}
 			kvsMap[kv.Key] = append(kvsMap[kv.Key], kv.Value)
 		}
-		f.Close()
 	}
 
 	var keys []string
@@ -77,7 +76,7 @@ func doReduce(
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
-	f, err := os.OpenFile(outFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(outFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}

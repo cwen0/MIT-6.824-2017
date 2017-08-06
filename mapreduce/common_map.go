@@ -69,7 +69,7 @@ func doMap(
 		kvSplits[index] = append(kvSplits[index], kv)
 	}
 	for i, peer := range kvSplits {
-		f, err := os.OpenFile(reduceName(jobName, mapTaskNumber, i), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+		f, err := os.OpenFile(reduceName(jobName, mapTaskNumber, i), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 		if err != nil {
 			log.Fatal(err)
 		}
